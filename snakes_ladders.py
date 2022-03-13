@@ -5,35 +5,36 @@ time_clocks = pygame.time.Clock()
 
 # Initialize
 pygame.init()
-width_screen = 1366
-height_screen = 768
+widthScreen = 1366
+heightScreen = 768
 
 ic = pygame.image.load("resources/icon.png")
-game_layout_display = pygame.display.set_mode((width_screen, height_screen), pygame.FULLSCREEN)
+game_layout_display = pygame.display.set_mode((widthScreen, heightScreen), pygame.FULLSCREEN)
 pygame.display.set_caption("Snakes and Ladders Game ")
 pygame.display.set_icon(ic)
 pygame.display.update()
 
-# Graphics:
-black_color = (10, 10, 10)
-white_color = (250, 250, 250)
-red_color = (200, 0, 0)
-blue_red_color = (240, 0, 0)
-green_color = (0, 200, 0)
-blue_green_color = (0, 230, 0)
-blue_color = (0, 0, 200)
-grey_color = (50, 50, 50)
-yellow_color = (150, 150, 0)
-purple_color = (43, 3, 132)
-blue_purple_color = (60, 0, 190)
+#    Graphics:
 
-mother_board = pygame.image.load("resources/Snakes_ladders_big_image.png")
-d1 = pygame.image.load("resources/dice_image1.png")
-d2 = pygame.image.load("resources/dice_image2.png")
-d3 = pygame.image.load("resources/dice_image3.png")
-d4 = pygame.image.load("resources/dice_image4.png")
-d5 = pygame.image.load("resources/dice_image5.png")
-d6 = pygame.image.load("resources/dice_image6.png")
+blackC = (10, 10, 10)
+whiteC = (250, 250, 250)
+redC = (200, 0, 0)
+BluRedC = (240, 0, 0)
+greenC = (0, 200, 0)
+BluGrnC = (0, 230, 0)
+blueC = (0, 0, 200)
+greyC = (50, 50, 50)
+yellowC = (150, 150, 0)
+purpleC = (43, 3, 132)
+bluePurpleC = (60, 0, 190)
+
+motherBoard = pygame.image.load("resources/Snakes_ladders_big_image.png")
+dice1 = pygame.image.load("resources/dice_image1.png")
+dice2 = pygame.image.load("resources/dice_image2.png")
+dice3 = pygame.image.load("resources/dice_image3.png")
+dice4 = pygame.image.load("resources/dice_image4.png")
+dice5 = pygame.image.load("resources/dice_image5.png")
+dice6 = pygame.image.load("resources/dice_image6.png")
 
 red_c = pygame.image.load("resources/red_c.png")
 yellow_c = pygame.image.load("resources/yellow_c.png")
@@ -69,7 +70,7 @@ def message_display_screen(text, x, y, fs):
 
 
 def text_objects_screen(text, font):
-    textSurface = font.render(text, True, white_color)
+    textSurface = font.render(text, True, whiteC)
     return textSurface, textSurface.get_rect()
 
 
@@ -107,7 +108,7 @@ def movement(a):
 
 
 def text_objects1(text, font):
-    textSurface = font.render(text, True, blue_color)
+    textSurface = font.render(text, True, blueC)
     return textSurface, textSurface.get_rect()
 
 
@@ -157,17 +158,17 @@ def snakes(x):
 
 def dice(d):
     if d == 1:
-        d = d1
+        d = dice1
     elif d == 2:
-        d = d2
+        d = dice2
     elif d == 3:
-        d = d3
+        d = dice3
     elif d == 4:
-        d = d4
+        d = dice4
     elif d == 5:
-        d = d5
+        d = dice5
     elif d == 6:
-        d = d6
+        d = dice6
 
     time_clock = pygame.time.get_ticks()
     while pygame.time.get_ticks() - time_clock < 1000:
@@ -232,7 +233,7 @@ def turn(sc, lefted, section):
         sc -= d
         time_clock = pygame.time.get_ticks()
         while pygame.time.get_ticks() - time_clock < 1500:
-            message_display1_screen("Can't move!", 650, 50, 35, black_color)
+            message_display1_screen("Can't move!", 650, 50, 35, blackC)
             pygame.display.update()
     return sc, lefted, section, six
 
@@ -318,16 +319,16 @@ def main_menu():
         click = pygame.mouse.get_pressed()
 
         game_layout_display.blit(menu_background, (0, 0))
-        button("Play", mouse[0], mouse[1], (width_screen / 2 - 100), height_screen / 2, 200, 100, green_color,
-               blue_green_color, 60, 1)
+        button("Play", mouse[0], mouse[1], (widthScreen / 2 - 100), heightScreen / 2, 200, 100, greenC,
+               BluGrnC, 60, 1)
 
-        button("Quit", mouse[0], mouse[1], (width_screen / 2 - 100), (height_screen / 2) + 200, 200, 100, red_color,
-               blue_red_color, 60, 0)
+        button("Quit", mouse[0], mouse[1], (widthScreen / 2 - 100), (heightScreen / 2) + 200, 200, 100, redC,
+               BluRedC, 60, 0)
 
         mouse = pygame.mouse.get_pos()
-        if button2("Mute Music", mouse[0], mouse[1], 1166, 0, 200, 50, purple_color, blue_purple_color, 25):
+        if button2("Mute Music", mouse[0], mouse[1], 1166, 0, 200, 50, purpleC, bluePurpleC, 25):
             pygame.mixer.music.pause()
-        if button2("Play Music", mouse[0], mouse[1], 1166, 75, 200, 50, purple_color, blue_purple_color, 25):
+        if button2("Play Music", mouse[0], mouse[1], 1166, 75, 200, 50, purpleC, bluePurpleC, 25):
             pygame.mixer.music.unpause()
         
 
@@ -351,19 +352,19 @@ def choice():
         best1 = best2 = best3 = best4 = best5 = -1
         game_layout_display.blit(menu_background, (0, 0))
         # Single player button
-        best1 = button("Single Player", mouse[0], mouse[1], (width_screen / 2 - 150), 250, 300, 50, green_color,
-                       blue_green_color, 30, "s")
+        best1 = button("Single Player", mouse[0], mouse[1], (widthScreen / 2 - 150), 250, 300, 50, greenC,
+                       BluGrnC, 30, "s")
         # 2 player button
-        best2 = button("2 Players", mouse[0], mouse[1], (width_screen / 2) - 150, 350, 300, 50, green_color,
-                       blue_green_color, 30, 2)
+        best2 = button("2 Players", mouse[0], mouse[1], (widthScreen / 2) - 150, 350, 300, 50, greenC,
+                       BluGrnC, 30, 2)
         # 3 player
-        best3 = button("3 Players", mouse[0], mouse[1], (width_screen / 2) - 150, 450, 300, 50, green_color,
-                       blue_green_color, 30, 3)
+        best3 = button("3 Players", mouse[0], mouse[1], (widthScreen / 2) - 150, 450, 300, 50, greenC,
+                       BluGrnC, 30, 3)
         # 4 player
-        best4 = button("4 Players", mouse[0], mouse[1], (width_screen / 2) - 150, 550, 300, 50, green_color,
-                       blue_green_color, 30, 4)
+        best4 = button("4 Players", mouse[0], mouse[1], (widthScreen / 2) - 150, 550, 300, 50, greenC,
+                       BluGrnC, 30, 4)
         # Back button
-        best5 = button("Back", mouse[0], mouse[1], 0, 650, 200, 50, red_color, blue_red_color, 30, 5)
+        best5 = button("Back", mouse[0], mouse[1], 0, 650, 200, 50, redC, BluRedC, 30, 5)
         if best5 == 5:
             main_menu()
         if best1 == "s":
@@ -384,7 +385,7 @@ def playing(best):
     if best6 == 7:
         choice()
     game_layout_display.blit(post, (0, 0))
-    game_layout_display.blit(mother_board, (width_screen / 2 - 250, height_screen / 2 - 250))
+    game_layout_display.blit(motherBoard, (widthScreen / 2 - 250, heightScreen / 2 - 250))
     xcr = xcy = xcg = xcb = 406 - 25
     ycr = ycy = ycg = ycb = 606 - 25
     game_layout_display.blit(red_c, (xcy, ycy))
@@ -417,7 +418,7 @@ def playing(best):
         set = False
         time = 3000
         game_layout_display.blit(post, (0, 0))
-        game_layout_display.blit(mother_board, (width_screen / 2 - 250, height_screen / 2 - 250))
+        game_layout_display.blit(motherBoard, (widthScreen / 2 - 250, heightScreen / 2 - 250))
         mouse = pygame.mouse.get_pos()
 
         for event in pygame.event.get():
@@ -429,7 +430,7 @@ def playing(best):
                     Quit()
 
         if best == 21:
-            if button1("Player 1", mouse[0], mouse[1], 100, 700, 200, 50, red_color, grey_color, 30):
+            if button1("Player 1", mouse[0], mouse[1], 100, 700, 200, 50, redC, greyC, 30):
                 if tips == 1:
                     gamer1score, less, set, six = turn(gamer1score, less, set)
                     if not six:
@@ -438,12 +439,12 @@ def playing(best):
                     if gamer1score == 100:
                         time = pygame.time.get_ticks()
                         while pygame.time.get_ticks() - time < 2000:
-                            message_display1_screen("Player 1 Wins", 650, 50, 50, blue_color)
+                            message_display1_screen("Player 1 Wins", 650, 50, 50, blueC)
                             pygame.mixer.Sound.play(win)
                             pygame.display.update()
                         break
 
-            button1("Computer", mouse[0], mouse[1], 400, 700, 200, 50, yellow_color, grey_color, 30)
+            button1("Computer", mouse[0], mouse[1], 400, 700, 200, 50, yellowC, greyC, 30)
             if True:
                 if tips == 2:
                     gamer2score, less, set, six = turn(gamer2score, less, set)
@@ -456,12 +457,12 @@ def playing(best):
                     if gamer2score == 100:
                         time_clock = pygame.time.get_ticks()
                         while pygame.time.get_ticks() - time_clock < 2000:
-                            message_display1_screen("Computer Wins", 650, 50, 50, black_color)
+                            message_display1_screen("Computer Wins", 650, 50, 50, blackC)
                             pygame.mixer.Sound.play(lose)
                             pygame.display.update()
                         break
         if 5 > best > 1:
-            if button1("Player 1", mouse[0], mouse[1], 100, 700, 200, 50, red_color, grey_color, 30):
+            if button1("Player 1", mouse[0], mouse[1], 100, 700, 200, 50, redC, greyC, 30):
                 if tips == 1:
                     gamer1score, less, set, six = turn(gamer1score, less, set)
                     xcr, ycr = movement(gamer1score)
@@ -470,12 +471,12 @@ def playing(best):
                     if gamer1score == 100:
                         time_clock = pygame.time.get_ticks()
                         while pygame.time.get_ticks() - time_clock < 2000:
-                            message_display1_screen("Player 1 Wins", 650, 50, 50, black_color)
+                            message_display1_screen("Player 1 Wins", 650, 50, 50, blackC)
                             pygame.mixer.Sound.play(win)
                             pygame.display.update()
                         break
 
-            if button1("Player 2", mouse[0], mouse[1], 400, 700, 200, 50, yellow_color, grey_color, 30):
+            if button1("Player 2", mouse[0], mouse[1], 400, 700, 200, 50, yellowC, greyC, 30):
                 if tips == 2:
                     gamer2score, less, set, six = turn(gamer2score, less, set)
                     xcy, ycy = movement(gamer2score)
@@ -487,13 +488,13 @@ def playing(best):
                     if gamer2score == 100:
                         time_clock = pygame.time.get_ticks()
                         while pygame.time.get_ticks() - time_clock < 2000:
-                            message_display1_screen("Player 2 Wins", 650, 50, 50, black_color)
+                            message_display1_screen("Player 2 Wins", 650, 50, 50, blackC)
                             pygame.mixer.Sound.play(win)
                             pygame.display.update()
                         break
 
         if 5 > best > 2:
-            if button1("Player 3", mouse[0], mouse[1], 700, 700, 200, 50, green_color, grey_color, 30):
+            if button1("Player 3", mouse[0], mouse[1], 700, 700, 200, 50, greenC, greyC, 30):
                 if tips == 3:
                     gamer3score, less, set, six = turn(gamer3score, less, set)
                     xcg, ycg = movement(gamer3score)
@@ -505,13 +506,13 @@ def playing(best):
                     if gamer3score == 100:
                         time_clock = pygame.time.get_ticks()
                         while pygame.time.get_ticks() - time_clock < 2000:
-                            message_display1_screen("Player 3 Wins", 650, 50, 50, black_color)
+                            message_display1_screen("Player 3 Wins", 650, 50, 50, blackC)
                             pygame.mixer.Sound.play(win)
                             pygame.display.update()
                         break
 
         if 5 > best > 3:
-            if button1("Player 4", mouse[0], mouse[1], 1000, 700, 200, 50, blue_color, grey_color, 30):
+            if button1("Player 4", mouse[0], mouse[1], 1000, 700, 200, 50, blueC, greyC, 30):
                 if tips == 4:
                     gamer4score, less, set, six = turn(gamer4score, less, set)
                     xcb, ycb = movement(gamer4score)
@@ -523,12 +524,12 @@ def playing(best):
                     if gamer4score == 100:
                         time_clock = pygame.time.get_ticks()
                         while pygame.time.get_ticks() - time_clock < 2000:
-                            message_display1_screen("Player 4 Wins", 650, 50, 50, black_color)
+                            message_display1_screen("Player 4 Wins", 650, 50, 50, blackC)
                             pygame.mixer.Sound.play(win)
                             pygame.display.update()
                         break
 
-        best6 = button("Back", mouse[0], mouse[1], 0, 0, 200, 50, red_color, blue_red_color, 30, 7)
+        best6 = button("Back", mouse[0], mouse[1], 0, 0, 200, 50, redC, BluRedC, 30, 7)
         game_layout_display.blit(red_c, (xcr, ycr))
         if 5 > best > 1 or best == 21:
             game_layout_display.blit(yellow_c, (xcy + 2, ycy))
@@ -542,12 +543,12 @@ def playing(best):
         if less:
             time_clock = pygame.time.get_ticks()
             while pygame.time.get_ticks() - time_clock < 2000:
-                message_display1_screen("There's a Ladder!", 650, 50, 35, black_color)
+                message_display1_screen("There's a Ladder!", 650, 50, 35, blackC)
                 pygame.display.update()
         if set:
             time_clock = pygame.time.get_ticks()
             while pygame.time.get_ticks() - time_clock < 2000:
-                message_display1_screen("There's a Snake!", 650, 50, 35, black_color)
+                message_display1_screen("There's a Snake!", 650, 50, 35, blackC)
                 pygame.display.update()
 
         time_clocks.tick(7)
